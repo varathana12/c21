@@ -11,11 +11,15 @@ import MapScreen from "../screens/MapScreen";
 import CameraScreen from "../screens/CameraScreen";
 
 const MapStack = createStackNavigator({
-  Home: MapScreen,
-});
+  Home: MapScreen
+
+},{ headerMode: 'none' });
 
 MapStack.navigationOptions = {
   tabBarLabel: 'Map',
+    header: {
+        visible: false
+    },
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
