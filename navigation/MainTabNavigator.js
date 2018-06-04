@@ -4,58 +4,91 @@ import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import AboutScreen from '../screens/AboutScreen'
+import ListScreen from '../screens/ListScreen'
+import PhotoScreen from "../screens/PhotoScreen";
+import MapScreen from "../screens/MapScreen";
+import CameraScreen from "../screens/CameraScreen";
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+const MapStack = createStackNavigator({
+  Home: MapScreen,
 });
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+MapStack.navigationOptions = {
+  tabBarLabel: 'Map',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-pin${focused ? '' : '-outline'}`
+          : 'md-pin'
       }
     />
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const CameraStack = createStackNavigator({
+  Links: CameraScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+CameraStack.navigationOptions = {
+  tabBarLabel: 'Camera',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+      name={Platform.OS === 'ios' ? `ios-camera${focused ? '' : '-outline'}` : 'md-camera'}
     />
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const PhotoStack = createStackNavigator({
+  Settings: PhotoScreen,
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+PhotoStack.navigationOptions = {
+  tabBarLabel: 'Photo',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
+      name={Platform.OS === 'ios' ? `ios-images${focused ? '' : '-outline'}` : 'md-images'}
     />
   ),
+};
+
+const ListStack = createStackNavigator({
+    Settings: ListScreen,
+});
+
+ListStack.navigationOptions = {
+    tabBarLabel: 'List',
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon
+            focused={focused}
+            name={Platform.OS === 'ios' ? `ios-list${focused ? '' : '-outline'}` : 'md-list'}
+        />
+    ),
+};
+
+
+const AboutStack = createStackNavigator({
+    Settings: AboutScreen,
+});
+
+AboutStack.navigationOptions = {
+    tabBarLabel: 'About',
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon
+            focused={focused}
+            name={Platform.OS === 'ios' ? `ios-alert${focused ? '' : '-outline'}` : 'md-alert'}
+        />
+    ),
 };
 
 export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
+    MapStack,
+    CameraStack,
+    PhotoStack,
+    ListStack,
+    AboutStack
 });
