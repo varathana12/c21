@@ -1,53 +1,58 @@
 import React from "react";
-import {View,Text,StyleSheet} from 'react-native'
-import { MapView } from 'expo';
+import {View,Text,StyleSheet,Image,Platform} from 'react-native'
+//import { MapView } from 'expo';
+import ViewPin from '../components/ViewPin'
+import {location} from "../data";
+import Tooltip from 'rn-tooltip';
+import MakerPoint from '../components/maker'
+import pin from '../assets/images/placeholder.png'
+import MapView from 'react-native-maps';
 export default class MapScreen extends React.Component{
+    state ={
+        loaded:false,
+        iconLoaded:false,
+        image:null
+    }
+    constructor(props){
+        super(props)
+    }
+    componentWillMount(){
+
+    }
+
 
     render(){
-        var markers = [
-            {
-                latitude: 45.65,
-                longitude: -78.90,
-                title: 'Foo Place',
-                subtitle: '1234 Foo Drive'
-            }
-        ];
+
         return(
             <MapView style={styles.map}
                      initialRegion={{
-                         latitude: 37.78825,
-                         longitude: -122.4324,
-                         latitudeDelta: 0.0,
-                         longitudeDelta: 0.0,
+                         latitude: 11.629549102704,
+                         longitude: 104.87701304512,
+                         latitudeDelta: 0.0722,
+                         longitudeDelta: 0.053,
                      }}
             >
-                <MapView.Marker
-                    coordinate={{latitude: 40.78825,
-                        longitude: -120.4324}}
-                    title={"title"}
-                    description={"description"}
+                {
 
-                >
-                    <MapView.Callout tooltip>
-                        <View >
-                            <Text>{"hello"}{"\n"}{"world"}</Text>
-                        </View>
-                    </MapView.Callout>
-                </MapView.Marker>
-                <MapView.Marker
-                    coordinate={{latitude: 45.78825,
-                        longitude: -125.4324}}
-                    title={"title"}
-                    description={"description"}
+                    location.map((item,index)=>{
 
-                >
-                    <MapView.Callout tooltip>
-                        <View style={{backgroundColor:"white",width:200,height:200}}>
-                            <Text>{"hello"}{"\n"}{"world"}</Text>
-                        </View>
-                    </MapView.Callout>
-                </MapView.Marker>
+                        return (
+                            <MapView.Marker
+                                identifier={index.toString()}
+                                onLoad={()=>console.log("maker loaded")}
+                                key={item}
+                                coordinate={{latitude: item[1], longitude: item[2]}}
+                                image={pin}
+                            >
+                                <MapView.Callout>
+                                    <ViewPin url={'http://www.c21worldtrust.com/files/property/th/_S__18087952.jpg'}/>
+                                </MapView.Callout>
 
+
+                            </MapView.Marker>
+                        )
+                    })
+                }
             </MapView>
         )
     }
