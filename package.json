@@ -12,13 +12,8 @@
     "expo": "^27.0.1",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-27.0.0.tar.gz",
-    "react-native-img-cache": "^1.5.3",
-    "react-native-maps": "^0.21.0",
     "react-native-qrimage-decoder": "^1.0.1",
-    "react-native-tooltip-menu": "^1.1.1",
-    "react-native-walkthrough-tooltip": "^0.2.0",
-    "react-navigation": "2.0.0",
-    "rn-tooltip": "^1.0.0"
+    "react-navigation": "2.0.0"
   },
   "devDependencies": {
     "jest-expo": "^27.0.0"
